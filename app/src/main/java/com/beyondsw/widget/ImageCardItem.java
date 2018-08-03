@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -24,7 +25,7 @@ public class ImageCardItem extends BaseCardItem {
         this.label = label;
     }
 
-    public  static class ViewHolder{
+    public static class ViewHolder {
         ImageView left;
         ImageView right;
         ImageView up;
@@ -34,14 +35,14 @@ public class ImageCardItem extends BaseCardItem {
     @Override
     public View getView(View convertView, ViewGroup parent) {
 
-        convertView = View.inflate(mContext,R.layout.item_imagecard,null);
+        convertView = View.inflate(mContext, R.layout.item_imagecard, null);
 
-        ImageView imageView = Utils.findViewById(convertView,R.id.image);
-        TextView labelview = Utils.findViewById(convertView,R.id.label);
-        ImageView left = Utils.findViewById(convertView,R.id.left);
-        ImageView right = Utils.findViewById(convertView,R.id.right);
-        ImageView up = Utils.findViewById(convertView,R.id.up);
-        ImageView down = Utils.findViewById(convertView,R.id.down);
+        ImageView imageView = Utils.findViewById(convertView, R.id.image);
+        TextView labelview = Utils.findViewById(convertView, R.id.label);
+        ImageView left = Utils.findViewById(convertView, R.id.left);
+        ImageView right = Utils.findViewById(convertView, R.id.right);
+        ImageView up = Utils.findViewById(convertView, R.id.up);
+        ImageView down = Utils.findViewById(convertView, R.id.down);
 
         ViewHolder vh = new ViewHolder();
         vh.left = left;
@@ -57,6 +58,13 @@ public class ImageCardItem extends BaseCardItem {
                 .centerCrop()
                 .crossFade()
                 .into(imageView);
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "点击", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         labelview.setText(label);
 
